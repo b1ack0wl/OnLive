@@ -17,6 +17,7 @@
  - **Storage**: Samsung 2GB NAND Flash [K9F2G08U0B]
  - **Bootloader**: U-Boot
  - **Linux Kernel Version**: 2.6.27.39
+ - **File System Type**: YAFFS2
 
 ### Hashes
 
@@ -43,4 +44,4 @@ nobody:x:65534:65534:Unprivileged Nobody:/dev/null:/bin/false
 
 ### TODO
  - Extract firmware from the controller.
- - See if it's possible to transform an Onlive Microconsole into a [Steamlink](https://www.youtube.com/watch?v=uOa-ObWPAKg). 
+ - See if it's possible to transform an Onlive Microconsole into a [Steamlink](https://www.youtube.com/watch?v=uOa-ObWPAKg).
