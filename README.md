@@ -11,13 +11,14 @@
  - There's a lot of references to GPLv2 within the image, so this repo is licensed under GPLv2.
 
 ### Environment
+
  - **CPU**: Marvell 88DE3010 ARMv5 (Little Endian)
  - **Memory**: 4x1GB DDR2 ELPIDA E1116AEBG
  - **Storage**: Samsung 2GB NAND Flash [K9F2G08U0B]
  - **Bootloader**: U-Boot
  - **Linux Kernel Version**: 2.6.27.39
 
- ### Hashes
+### Hashes
 
 ---shadow---\
 root:$1$$wQCY2EFvsLKFoVcT1e0Kq0:12215:0:99999:7:::\
