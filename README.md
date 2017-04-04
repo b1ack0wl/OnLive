@@ -18,6 +18,7 @@
  - **Bootloader**: U-Boot
  - **Linux Kernel Version**: 2.6.27.39
  - **File System Type**: YAFFS2
+ - **GCC**: (CodeSourcery 2006q3-27, Marvell 2007q3-11) 4.1.1
 
 ### Hashes
 
