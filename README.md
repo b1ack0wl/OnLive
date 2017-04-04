@@ -8,6 +8,7 @@
 
  - Use `extract.sh` to extract the compressed firmware file.
  - This seems to be a 2010 version of the Steam Link - https://github.com/ValveSoftware/steamlink-sdk
+ - There's a lot of references to GPLv2 within the image, so this repo is licensed under GPLv2.
 
 ### Environment
  - **CPU**: Marvell 88DE3010 ARMv5 (Little Endian)
