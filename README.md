@@ -20,25 +20,26 @@
 
 ### Hashes
 
----shadow---\
-root:$1$$wQCY2EFvsLKFoVcT1e0Kq0:12215:0:99999:7:::\
-sshd:!:0:0:99999:7:::\
-ratio:$1$$Ox3sD7SU2sKjDwBMqX2/b0:12215:0:99999:7:::\
+```
+---shadow---
+root:$1$$wQCY2EFvsLKFoVcT1e0Kq0:12215:0:99999:7:::
+sshd:!:0:0:99999:7:::
+ratio:$1$$Ox3sD7SU2sKjDwBMqX2/b0:12215:0:99999:7:::
 system:$1$$SPGJYr/enc6gAZU73WtZw/:12215:0:99999:7:::
 
----shadow---\
+---shadow---
 root:$1$w25wunDK$afkqwthNX7R1yWZzJCrsG.:12215:0:99999:7:::
 
 
----passwd---\
-root:x:0:0:root:/home:/bin/sh\
-ftp:x:11:101:ftp user:/home:/bin/false\
-www:x:12:102:www user:/home:/bin/false\
-sshd:x:100:65534:SSH Server:/var/run/sshd:/bin/false\
-messagebus:x:103:104:messagebus:/dev/null:/bin/false\
-rpcuser:x:65533:65534:RPC user:/dev/null:/bin/false\
+---passwd---
+root:x:0:0:root:/home:/bin/sh
+ftp:x:11:101:ftp user:/home:/bin/false
+www:x:12:102:www user:/home:/bin/false
+sshd:x:100:65534:SSH Server:/var/run/sshd:/bin/false
+messagebus:x:103:104:messagebus:/dev/null:/bin/false
+rpcuser:x:65533:65534:RPC user:/dev/null:/bin/false
 nobody:x:65534:65534:Unprivileged Nobody:/dev/null:/bin/false
-
+```
 
 ### TODO
  - Extract firmware from the controller.
