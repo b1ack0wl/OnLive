@@ -1,0 +1,10 @@
+Package:	bluez-utils
+Priority:	optional
+Version:	3.36
+Section:  	base
+Architecture:	armel
+Maintainer:	"Remi Machet - OnLive"
+Depends:	
+Source: 	http://www.pengutronix.de/software/ptxdist_de.html
+Description:	missing
+

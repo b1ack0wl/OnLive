@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# syslogd/klogd
+#
+LOGD=/sbin
+# klogd is an option
+KLOGD=klogd
+SLOGD=syslogd
+
+case $1 in
+
+	start)
+		echo "syslogd starting"
+		$LOGD/$SLOGD
+		if { -e "$LOGD/$KLOGD" }; then
+			echo "klogd starting"
+			$LOGD/$KLOGD
+		fi
+		;;
+
+	stop)
+		echo "stopping syslog"
+		killall -q $KLOGD
+		killall $SLOGD
+		;;
+esac

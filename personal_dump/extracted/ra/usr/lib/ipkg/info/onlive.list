@@ -1,0 +1,17 @@
+/usr/lib/libdl.so.2
+/usr/lib/libnss_dns.so.2
+/etc/rc.d/S99_onlive
+/usr/lib/libresolv.so.2
+/etc/ser2net.conf
+/etc/init.d/mdev
+/etc/init.d/gcinit
+/onlive/rootfs.version
+/usr/lib/libstdc++.so.6
+/usr/lib/libm.so.6
+/etc/init.d/onlive
+/usr/lib/libgcc_s.so.1
+/usr/lib/librt.so.1
+/usr/lib/libnss_files.so.2
+/usr/lib/libnsl.so.1
+/etc/rc.d/S00_mdev
+/etc/resolv.conf

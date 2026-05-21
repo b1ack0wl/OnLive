@@ -1,0 +1,4 @@
+/sbin/i2cget
+/sbin/i2cset
+/sbin/i2cdetect
+/sbin/i2cdump

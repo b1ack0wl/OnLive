@@ -1,0 +1,4 @@
+/sbin/flash_eraseall
+/sbin/nanddump
+/sbin/mkfs.jffs2
+/sbin/nandwrite

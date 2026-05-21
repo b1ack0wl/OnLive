@@ -1,0 +1,15 @@
+/etc/hosts
+/etc/protocols
+/dev/zero
+/etc/nsswitch.conf
+/etc/passwd
+/etc/shadow
+/etc/fstab
+/etc/hostname
+/dev/null
+/etc/profile
+/etc/group
+/etc/shadow-
+/etc/services
+/dev/console
+/etc/mtab

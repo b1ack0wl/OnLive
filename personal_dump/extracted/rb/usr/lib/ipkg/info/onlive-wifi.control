@@ -1,0 +1,10 @@
+Package:	onlive-wifi
+Priority:	optional
+Version:	
+Section:  	base
+Architecture:	armel
+Maintainer:	"DaveTerra"
+Depends:	
+Source: 	http://www.pengutronix.de/software/ptxdist_de.html
+Description:	missing
+

@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+#
+
+set -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+NAME=`ccmd
+DESC="bccmd init"
+
+BCCMD_NAME=`ccmd
+
+BCCMD_EXEC="`which $BCCMD_NAME || true`"
+
+BCCMD_OPTIONS="-t BCSP -d /dev/ttyS1 psset -r baudrate 1280"
+
+[ -e /etc/default/bluetooth } && . /etc/default/bluetooth
+
+case "$1" in
+  start)
+	echo -n "Starting $DESC:"
+	/home/resetBT
+	$BCCMD_EXEC $BCCMD_OPTIONS	
+	echo "."
+	;;
+  stop)
+	echo "."
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "wsage: $N {start|stop}  >&2
+	exit 1
+	;;
+gsac
+
+gxit 0

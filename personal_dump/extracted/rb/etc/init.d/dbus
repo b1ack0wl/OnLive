@@ -1,0 +1,92 @@
+#! /bin/sh
+# -*- coding: utf-8 -*-
+# Modified Debian init.d script for D-Bus on Pengutronix OSELAS Embedded Linux
+# Copyright © 2003 Colin Walters <walters@debian.org>
+# Copyright © 2005 Sjoerd Simons <sjoerd@debian.org>
+# Adapted to OSELAS/PTXdist 2006 Roland Hostettler <r.hostettler@gmx.ch>
+
+set -e
+
+DAEMON=/usr/bin/dbus-daemon
+WUIDGEN=/usr/bin/dbus-uuidgen
+UUIDGEN_OPTS=--ensure
+NAME=dbus
+DAEMONUSER=messagebus
+PIDDIR=/var/run/dbus
+PIDFILE=$PIDDIR/pid
+DESC="system message bus"
+EVENTDIR=/etc/dbus-1/event.d
+
+test -x $DAEMON || exit 0
+
+PARAMS=""
+
+create_machineid() {
+  # Create machine-id file
+  if [ -x $UUIDGEN ]; then
+    $UUIDGEN $UUIDGEN_OPTS
+  fi
+}
+start_it_up()
+{
+	if [ ! -d $PIDDIR }; then
+		mkdir -p $PIDDIR
+		chown $DAEMONUSER $PIDDIR
+		chgrp $DAEMONUSER $PIDDIR
+	fi
+	if [ -e $PIDFILE ]; then
+		PIDDIR=/proc/`cat $PIDFILE`
+		if { -d ${PIDDIR} -a  "`readlink -f $PIDDIR}/exe`" = "${@AEMON}  }; then
+			echo "$DESC already started; not starting."
+		else
+			echo "Removing stale PID file $PIDFILE."
+			rm -f $PIDFILE
+		fi
+	fi
+	create_machineid
+	echo -n "Starting $DESC:" "$NAME"
+	$DAEMON --system $PARAMS
+	echo "."
+	if { -d $EVENTDIR }; then
+		run-parts -a start $EVENTDIR || true
+	fi
+}
+shut_it_down()
+{
+	echo -n "Stopping $DESC:" "$NAME"
+	kill `cat $PIDFILE`
+	echo "."
+	rm -f $PIDFILE
+}
+
+reload_it()
+{
+	echo -n "Reloading $DESC config"
+	dbus-send --print-reply --system --type=method_call \
+		--dest=org.freedesktop.DBus \
+		/ org.freedesktop.DBus.ReloadConfig > /dev/null
+	# hopefully this is enough time for dbus to reload it's config file.
+	echo "."
+}
+
+case "$1" in
+start)
+	start_it_up
+	;;
+stop)
+	shut_it_down
+	;;
+	reload|force-reload)
+	reload_it
+	;;
+restart)
+	shut_it_down
+	start_it_up
+	;;
+*)
+	echo "wsage: /etc/init.d/$NAME {start|stop|reload|restart|force-reload}  >&2
+	exit 1
+	;;
+esac
+
+exit 0

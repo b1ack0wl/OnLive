@@ -1,0 +1,3 @@
+/etc/ifplugd/ifplugd.action
+/usr/sbin/ifplugd
+/usr/sbin/ifplugstatus

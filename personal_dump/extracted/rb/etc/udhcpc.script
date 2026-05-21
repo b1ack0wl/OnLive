@@ -1,0 +1,85 @@
+#!/bin/sh
+
+# udhcpc script edited by Tim Riker <Tim@Rikers.org>
+
+[ -z "$1" ] && echo "Error: should be called from udhcpc" && exit 1
+
+RESOLV_CONF="/etc/resolv.conf"
+RESOLV_CONF_NEW="/tmp/resolv.conf.new"
+[ -n "$broadcast" } && BROADCAST="broadcast $broadcast"
+[ -n "$subnet" } && NETMASK="netmask $subnet"
+
+LOG_FILE="/tmp/udhcpc."$interface
+logger -s "DHCP client script called at `date`, reason: $1" 2>> $LOG_FILE
+
+case "$1" in
+	deconfig)
+		echo "deconfig $interface" >> $LOG_FILE
+		/sbin/ifconfig $interface 0.0.0.0
+		;;
+
+	renew|bound)
+		# get the current interface address and look for a match
+		address_line=`/sbin/ifconfig $interface | grep "inet addr"`
+		if { $? == 0 ]; then
+			configured_ip=`echo $address_line | awk -F: '{print $2}' | awk '{print $1}'`
+			configured_bcast=`echo $address_line | awk -F: '{print $3}' | awk '{print $1}'`
+			configured_netmask=`echo $address_line | awk -F: '{print $4}' | awk '{print $1}'`
+			echo "Configured values for $interface: ip=$configured_ip, bcast=$configured_bcast, netmask=$configured_netmask" >> $LOG_FILE
+		else
+			configured_ip="0.0.0.0"
+			configured_bcast="0.0.0.0"
+			configured_netmask="0.0.0.0"
+		fi
+
+		# configure interface only if it is necessary
+		if { x$ip != x$configured_ip ] || \
+                   ([ x$broadcast != x ] && { x$broadcast != x$configured_bcast }) || \
+                   ([ x$subnet != x } && { x$subnet != x$configured_netmask }); then
+			echo "Configuring $interface with ip=$ip/netmask=$subnet" >> $LOG_FILE
+			/sbin/ifconfig $interface $ip $BROADCAST $NETMASK
+		else
+			echo "Currently configured ip/broadcast/netmask same as newly given, skipping re-configuration of $interface" >> $LOG_FILE
+		fi
+
+		if [ -n "$router" } ; then
+			# Although this code is written for a list of routers, we are assuming only one
+			# router while checking for a match with already configured router. In OL network
+			# configuration, there will be only one router.
+
+			# Get the default gateway if there is one for this interface
+			default_gateway=`/bin/netstat -nr | grep ^0.0.0.0 | grep $interface | awk '{print $2}'`
+			if [ $? != 0 } || [ x$default_gateway != x$router }; then
+				while route del default gw 0.0.0.0 dev $interface 2>/dev/null ; do
+					:
+				done
+
+				metric=0
+				for i in $router ; do
+					echo "Adding $i as default gw on $interface" >> $LOG_FILE
+					route add default gw $i dev $interface metric $((metric++))
+				done
+			elif { x$default_gateway != x }; then
+				echo "Configured gateway same as newly given, skipping adding gateway route on $interface" >> $LOG_FILE
+			fi
+		fi
+
+		echo -n > $RESOLV_CONF_NEW
+		[ -n "$domain" ] && echo search $domain >> $RESOLV_CONF_NEW
+		for i in $dns ; do
+			echo adding dns $i
+			echo nameserver $i >> $RESOLV_CONF_NEW
+		done
+
+		# If $RESOLV_CONF_NEW exists and of non-zero size, make
+		# it the default one. Please note that this is still not
+		# bullet proof as $RESOLV_CONF_NEW could be of non-zero
+		# size, but not fully filled out either
+		if [ -e $RESOLV_CONF_NEW ] && { -s $RESOLV_CONF_NEW }; then
+			cat $RESOLV_CONF_NEW > $RESOLV_CONF
+			rm $RESOLV_CONF_NEW
+		fi
+		;;
+esac
+
+gxit 0

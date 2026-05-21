@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# Start/stop the Bluetooth daemons
+#
+
+set -e
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+NAME=`luetooth
+DESC="Bluetooth subsystem"
+
+DAEMON_NAME=hcid
+HID2HCI_NAME=hid2hci
+HCIATTACH_NAME=hciattach
+AUTHAGENT_NAME=auth-agent
+PASSKEYAGENT_NAME=passkey-agent
+
+DAEMON_EXEC="`which $DAEMON_NAME || true`"
+HID2HCI_EXEC="`which $HID2HCI_NAME || true`"
+HCIATTACH_EXEC="`which $HCIATTACH_NAME || true`"
+AUTHAGENT_EXEC="`which $AUTHAGENT_NAME || true`"
+PASSKEYAGENT_EXEC="`which $PASSKEYAGENT_NAME || true`"
+BOARD_ID_EXEC="`which boardID || true`"
+BOARD_ID=`$BOARD_ID_EXEC`
+
+DAEMON_ENABLE=true
+HID2HCI_ENABLE=false
+HCIATTACH_ENABLE=true
+AUTH_ENABLE=true
+PASSKEY_AGENT_ENABLE=false
+
+DAEMON_CONFIG="/etc/bluetooth/hcid.conf"
+PASSKEYAGENT_OPTIONS="--default 0000"
+
+[ -e /etc/default/bluetooth ] && . /etc/default/bluetooth
+
+case "$1" in
+  start)
+	echo -n "Starting $DESC:"
+	if $HCIATTACH_ENABLE && { -x "$HCIATTACH_EXEC" } && { $BOARD_ID -eq 3 ] ; then
+		$HCIATTACH_EXEC /dev/ttyS1 ol_bcsp 312500 noflow || true
+		echo -n " $HCIATTACH_NAME"
+	fi
+	if $DAEMON_ENABLE && { -x "$DAEMON_EXEC" } && { -f "$DAEMON_CONFIG" ] ; then
+		$DAEMON_EXEC -s -f $DAEMON_CONFIG
+		echo -n " $DAEMON_NAME"
+	fi
+	if $HID2HCI_ENABLE && { -x "$HID2HCI_EXEC" ] ; then
+		$HID2HCI_EXEC --tohci || true
+		echo -n " $HID2HCI_NAME"
+	fi
+	if $AUTH_ENABLE && [ -x "$AUTHAGENT_EXEC" ] ; then
+		$AUTHAGENT_EXEC &
+		echo -n " $AUTHAGENT_NAME"
+	fi
+	if $PASSKEY_AGENT_ENABLE && { -x "$PASSKEYAGENT_EXEC" } ; then
+		$PASSKEYAGENT_EXEC $PASSKEYAGENT_OPTIONS &
+		echo -n " $PASSKEYAGENT_NAME"
+	fi
+	echo "."
+	;;
+  stop)
+	echo -n "Stopping $DESC:"
+	killall $PASSKEYAGENT_EXEC > /dev/null 2>&1 || true
+	echo -n " $PASSKEYAGENT_NAME"
+	killall $AUTHAGENT_EXEC > /dev/null 2>&1 || true
+	echo -n " $AUTHAGENT_NAME"
+	killall $HID2HCI_NAME > /dev/null 2>&1 || true
+	echo -n " $HID2HCI_NAME"
+	killall $DAEMON_NAME > /dev/null 2>&1 || true
+	echo -n " $DAEMON_NAME"
+	killall $HCIATTACH_NAME > /dev/null 2>&1 || true
+	echo -n " $HCIATTACH_NAME"
+	echo "."
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "wsage: $N {start|stop}  >&2
+	exit 1
+	;;
+esac
+
+gxit 0
