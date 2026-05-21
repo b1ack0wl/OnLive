@@ -1,0 +1,144 @@
+Package: bluez-libs
+Version: 3.36
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: bluez-utils
+Version: 3.36
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: busybox
+Version: 1.13.2
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: coreutils
+Version: 5.2.1
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: dbus
+Version: 1.2.12
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: expat
+Version: 2.0.1
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: gcclibs
+Version: 4.1.1
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: glibc
+Version: 3.8
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: i2c-tools
+Version: 3.0.2
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: ifplugd
+Version: 0.28
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: initmethod-bbinit
+Version: 1.0.0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: kernel-modules
+Version: 2.6.27.39
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: libdaemon
+Version: 0.12
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: liblzo
+Version: 2.03
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: module-init-tools
+Version: 3.5
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: mtd-utils
+Version: 1.3.0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: oltools
+Version: 0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: onlive
+Version: 0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: onlive-wifi
+Version: 
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: rootfs
+Version: 1.0.0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: ser2net
+Version: 0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: setsil9034
+Version: 0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: signrootfs
+Version: 0
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+
+Package: zlib
+Version: 1.2.3-ptx4
+Status: install user installed
+Architecture: armel
+Installed-Time: 1323816206
+

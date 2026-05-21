@@ -1,0 +1,13 @@
+/lib/libiw.so
+/bin/ifrename
+/bin/iwspy
+/bin/iwconfig
+/bin/iwpriv
+/bin/iwgetid
+/usr/bin/mlanconfig
+/usr/bin/exec_wifi_boot.sh
+/lib/libiw.so.29
+/bin/iwlist
+/bin/iwevent
+/lib/firmware/mrvl/usb8782_uapsta.bin
+/usr/bin/kill_wifi_boot.sh

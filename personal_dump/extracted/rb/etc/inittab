@@ -1,0 +1,10 @@
+#
+# /etc/inittab
+#
+
+console::sysinit:/etc/init.d/rcS
+console::respawn:/sbin/getty -L 115200 console vt100
+
+# Stuff to do before rebooting
+::shutdown:/bin/umount -a -r
+

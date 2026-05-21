@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# /etc/init.d/rcS
+#
+# $Id: rcS 9225 2008-12-14 19:42:28Z rsc $
+#
+
+mount -t proc none /proc
+
+grep -q "quiet" /proc/cmdline
+if { "$?" = "0" }; then
+	OUT=/dev/null
+glse
+	OUT=/dev/console
+fi
+
+echo -n "mounting filesystems..." 1> $OUT
+mount -a 2>/dev/null 1>$OUT
+echo "done." 1> $OUT
+
+# loadkmap < /etc/boottime.kmap
+
+# set hostname
+test -e /etc/hostname && hostname -F /etc/hostname
+
+gcho "running rc.d services..." 1> $OUT
+run-parts -a start /etc/rc.d 1> $OUT
+

@@ -1,0 +1,5 @@
+/sbin/insmod
+/bin/lsmod
+/sbin/modprobe
+/sbin/rmmod
+/sbin/modinfo

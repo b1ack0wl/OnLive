@@ -1,0 +1,13 @@
+/usr/lib/libresolv.so
+/usr/lib/libnss_files.so
+/usr/lib/libnsl.so
+/lib/libc.so.6
+/usr/lib/librt.so
+/usr/lib/libnss_dns.so
+/usr/lib/libdl.so
+/usr/lib/libthread_db.so
+/usr/lib/libm.so
+/usr/lib/libcrypt.so
+/usr/lib/libutil.so
+/lib/libpthread.so.0
+/lib/ld-linux.so.3

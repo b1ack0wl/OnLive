@@ -1,0 +1,14 @@
+#!/bin/sh
+sleep 2
+wsb_owl_hosts=`cat /sys/bus/usb/devices/*/modalias | grep -c 'usb:v2378p1006'`
+
+if { `boardID` -eq 3 }; then 
+	modprobe owl_spi
+fi
+
+if [ $usb_owl_hosts -ne 0 ]; then
+	echo off > /sys/bus/owlspi/devices/owl.0/owl_command &
+fi
+
+modprobe owl
+modprobe xpad

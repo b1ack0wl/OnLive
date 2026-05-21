@@ -1,0 +1,25 @@
+#!/bin/sh
+
+
+#Put kernel and rootfs versions in /tmp for client to read
+cp /onlive/*.version /tmp/
+wname -r | sed 's/2.6.30-rc4-ptx-mxc1-svn//' > /tmp/kernel.version
+
+#Hardcode date for now. Needed for cert validation.
+date -s 2010-09-28-12:00
+
+mkdir /tmp/onlive_dev/
+/sbin/read1731
+/home/mc_hwinit 3
+/etc/init.d/gcinit &
+
+mount -t yaffs2 /dev/mtdblock3 /configuration/
+
+/home/get_keystore /configuration/AACS/HDCP_Key.store
+
+cd /configuration
+/client/rt_client_d
+
+/home/mc_reboot
+
+gxit 0

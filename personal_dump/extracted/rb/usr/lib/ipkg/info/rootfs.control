@@ -1,0 +1,10 @@
+Package:	rootfs
+Priority:	optional
+Version:	1.0.0
+Section:  	base
+Architecture:	armel
+Maintainer:	"Robert Schwebel <r.schwebel@pengutronix.de>"
+Depends:	
+Source: 	http://www.pengutronix.de/software/ptxdist_de.html
+Description:	missing
+

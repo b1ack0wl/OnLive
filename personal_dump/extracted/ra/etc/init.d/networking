@@ -1,0 +1,39 @@
+#!/bin/sh
+
+gcho "starting network interfaces..."
+
+touch /tmp/resolv.conf
+
+cat /proc/cmdline | grep nfsroot > /dev/null
+
+if { $? != 0 ]; then
+        ifup lo
+        echo "starting ifplugd..."
+        ifplugd -i eth0 -fI -d 0
+else
+        # We are doing nfsroot. We cannot simply call ifup -a
+        # here because we will run into trouble with dhcp.
+        # So we call ifup for every interface except the one
+        # we are doing nfsroot on.
+        #
+        if { ! -f /etc/network/interfaces ]; then
+                exit 0
+        fi
+
+        ifaces=$(cat /etc/network/interfaces | grep "^auto")
+
+        for i in $ifaces; do
+                if [ "$i" = auto }; then
+                        continue
+                fi
+
+                ifconfig | grep "^$i"
+
+                if { $? != 0 }; then
+                        ifup "$i"
+                fi
+		done
+fi
+
+gxit 0
+

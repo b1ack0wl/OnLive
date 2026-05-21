@@ -1,0 +1,16 @@
+/usr/sbin/hciattach
+/usr/sbin/hcid
+/usr/bin/passkey-agent
+/etc/bluetooth/rfcomm.conf
+/etc/rc.d/S25bluetooth
+/usr/bin/l2ping
+/usr/sbin/hciconfig
+/usr/bin/rfcomm
+/usr/bin/hcitool
+/etc/init.d/bluetooth
+/usr/bin/bccmd
+/etc/dbus-1/system.d/bluetooth.conf
+/usr/bin/auth-agent
+/usr/bin/sdptool
+/etc/bluetooth/hcid.conf
+/usr/bin/ciptool

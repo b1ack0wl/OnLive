@@ -1,0 +1,5 @@
+#!/bin/sh
+sleep 2
+modprobe owl_spi
+modprobe owl
+modprobe ol_xpad

@@ -1,0 +1,10 @@
+/etc/rc.d/S98modules
+/etc/network/interfaces
+/etc/init.d/rcS
+/etc/rc.d/S08syslog
+/etc/init.d/modules
+/etc/init.d/networking
+/etc/rc.d/S26networking
+/etc/rc.d/S12dbus
+/etc/modules
+/etc/inittab
